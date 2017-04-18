@@ -168,6 +168,7 @@ func MainAction(c *cli.Context) {
 
 	// scan for changes
 	scanChanges(c.GlobalStringSlice("watchPaths"), c.GlobalStringSlice("excludeDir"), all, func(path string) {
+		fmt.Printf("%v changed. Restarting...", path)
 		runner.Kill()
 		build(builder, runner, logger)
 	})
